@@ -1,0 +1,46 @@
+
+// Define the Motelcustomer object
+const Motelcustomer = {
+  name: "Orest Demchuk",
+  birthDate: "2004-06-04",
+  gender: "Male",
+  roomPreferences: ["Non-smoking", "King-size bed"],
+  paymentMethod: "Credit Card",
+  mailingAddress: {
+    street: "44 First St",
+    city: "St John's",
+    state: "NL",
+    postalCode: "A1N2M9"
+  },
+  phoneNumber: "709-351-0366",
+  checkIn: "2024-04-01",
+  checkOut: "2024-04-10",
+  // Method to calculate age
+  calculateAge: function() {
+    const today = new Date();
+    const birthDate = new Date(this.birthDate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  },
+  // Method to calculate duration of stay
+  calculateStayDuration: function() {
+    const checkInDate = new Date(this.checkIn);
+    const checkOutDate = new Date(this.checkOut);
+    const duration = Math.abs(checkOutDate - checkInDate) / (1000 * 60 * 60 * 24);
+    return duration;
+  },
+  // Method to generate customer description
+  generateDescription: function() {
+    return `Customer Name: ${this.name}\nAge: ${this.calculateAge()}\nGender: ${this.gender}\nRoom Preferences: ${this.roomPreferences.join(", ")}\nPayment Method: ${this.paymentMethod}\nMailing Address: ${this.mailingAddress.street}, ${this.mailingAddress.city}, ${this.mailingAddress.state} ${this.mailingAddress.postalCode}\nPhone Number: ${this.phoneNumber}\nCheck-In Date: ${this.checkIn}\nCheck-Out Date: ${this.checkOut}\nDuration of Stay: ${this.calculateStayDuration()} days`;
+  }
+};
+
+// Output customer description
+console.log(Motelcustomer.generateDescription());
+```
+
+This code defines a `Motelcustomer` object with the specified attributes and methods. The `generateDescription` method dynamically generates a description of the customer using template literals, incorporating various personal attributes of the customer. This method can be used to display the customer's information in HTML as well, by formatting the output accordingly.
